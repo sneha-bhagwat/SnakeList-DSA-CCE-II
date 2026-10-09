@@ -163,24 +163,45 @@ provided the queue contains fewer than five power-ups.
 
 ---
 
-## Sample Input
+## Flowchart
 
-The game reads movement commands from the keyboard.
+The following flowchart represents the execution of the SnakeList game.
 
-Example sequence:
+flowchart TD
+    A([START]) --> B[Initialize Game]
+    B --> C[Create Initial Snake]
+    C --> D[Generate Food Position]
+    D --> E[Display Game Board]
+    E --> F[Read Keyboard Input]
 
-D
-D
-W
-A
-E
-Q
+    F --> G{Quit?}
+    G -- Yes --> M[Clean Up Memory]
+    G -- No --> H[Update Direction or Process U/E]
 
-These commands represent right, right, up, left, power-up
-activation, and quit.
+    H --> I[Calculate Next Head Position]
+    I --> J{Hit Wall?}
 
-The actual gameplay depends on the food position and the
-power-ups available.
+    J -- Yes --> M
+    J -- No --> K{Hit Own Body?}
+
+    K -- Yes --> M
+    K -- No --> L[Push Move to Stack and Add Head]
+
+    L --> N{Food Eaten?}
+    N -- Yes --> O[Update Score and Generate Food]
+    O --> P{Every 3 Foods and Queue Below 5?}
+    P -- Yes --> Q[Enqueue Power-Up]
+    P -- No --> R[Continue Game]
+    Q --> R
+
+    N -- No --> S[Delete Tail]
+    S --> R
+
+    R --> E
+
+    M --> T[Free List, Queue and Stack Nodes]
+    T --> U[Display Final Score and Memory Count]
+    U --> V([END])
 
 ## Sample Output
 
