@@ -248,26 +248,33 @@ flowchart TD
 ```
 ## Sample Output
 
-Example display format:
+The following is an illustrative example of the game output.
 
+```text
 +------------------------------+
 |                              |
 |                              |
 |             *                |
 |             Ooo              |
 |                              |
+|                              |
 +------------------------------+
 
-Score:10  Length:4  Undo left:3
-Power-up queue:
-Stack depth:5  Nodes alive:...
+Score: 10
+Length: 4
+Undo left: 3
 
-GAME OVER: You quit  Score:10
-Nodes still in memory: 0  (no leak)
+Power-up queue: SLOW
+Stack depth: 5
+Nodes alive: 10
 
-Note: This is an illustrative example of the output format.
-Actual positions, scores, stack depth, and node counts vary
-during gameplay.
+GAME OVER: You quit
+Score: 10
+
+Nodes still in memory: 0 (no leak)
+```
+
+**Note:** This is an illustrative example. Actual positions, scores, power-ups, and node counts may vary during gameplay.
 
 ---
 
