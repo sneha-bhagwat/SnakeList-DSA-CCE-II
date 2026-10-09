@@ -1,0 +1,16 @@
+# Compiled executables
+SnakeList
+SnakeList.exe
+a.out
+
+# Object files
+*.o
+*.obj
+
+# IDE folders
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.log
