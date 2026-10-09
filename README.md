@@ -162,47 +162,90 @@ provided the queue contains fewer than five power-ups.
 17. Display the final score and remaining node count.
 
 ---
-
 ## Flowchart
 
-The following flowchart represents the execution of the SnakeList game.
+The following flowchart illustrates the complete working of the SnakeList game, including snake movement, food consumption, power-ups, undo operations, collision detection, and memory management.
 
+```mermaid
 flowchart TD
-    A([START]) --> B[Initialize Game]
-    B --> C[Create Initial Snake]
-    C --> D[Generate Food Position]
-    D --> E[Display Game Board]
-    E --> F[Read Keyboard Input]
+    A([START]) --> B[Initialize Random Generator and Keyboard]
+    B --> C[Create Initial Snake with 3 Nodes]
+    C --> D[Initialize Score, Direction, Undo Count and Counters]
+    D --> E[Generate Food at Random Position]
+    E --> F[Display Game Board, Score and Data Structure Status]
 
-    F --> G{Quit?}
-    G -- Yes --> M[Clean Up Memory]
-    G -- No --> H[Update Direction or Process U/E]
+    F --> G[Read Keyboard Input]
 
-    H --> I[Calculate Next Head Position]
-    I --> J{Hit Wall?}
+    G --> H{Quit Key Q Pressed?}
+    H -- Yes --> Z[Restore Terminal Settings]
+    H -- No --> I{Undo Key U Pressed?}
 
-    J -- Yes --> M
-    J -- No --> K{Hit Own Body?}
+    I -- Yes --> J{Undo Available and Stack Not Empty?}
+    J -- Yes --> K[Pop Up to 3 Movement Records]
+    K --> L[Restore Previous Snake Positions and Direction]
+    L --> M[Decrease Undo Count]
+    J -- No --> N{Power-up Key E Pressed?}
+    M --> N
 
-    K -- Yes --> M
-    K -- No --> L[Push Move to Stack and Add Head]
+    I -- No --> N
+    N -- Yes --> O{Power-up Queue Empty?}
+    O -- No --> P[Dequeue Next Power-up]
+    P --> Q{Power-up Type?}
+    Q -- SLOW --> R[Slow Down Game Temporarily]
+    Q -- SHRINK --> S[Remove Up to 2 Tail Nodes]
+    Q -- 2X --> T[Enable Double Score for Next Food]
+    R --> U[Continue Game Loop]
+    S --> U
+    T --> U
+    O -- Yes --> U
 
-    L --> N{Food Eaten?}
-    N -- Yes --> O[Update Score and Generate Food]
-    O --> P{Every 3 Foods and Queue Below 5?}
-    P -- Yes --> Q[Enqueue Power-Up]
-    P -- No --> R[Continue Game]
-    Q --> R
+    N -- No --> V[Update Direction if Valid]
+    U --> V
+    V --> W[Calculate Next Head Position]
+    W --> X{Head Hits Wall?}
 
-    N -- No --> S[Delete Tail]
-    S --> R
+    X -- Yes --> Y[Set Game Over: Wall Collision]
+    X -- No --> AA{Next Position Hits Snake Body?}
 
-    R --> E
+    AA -- Yes --> AB[Set Game Over: Self Collision]
+    AA -- No --> AC[Check Whether Food Is Eaten]
 
-    M --> T[Free List, Queue and Stack Nodes]
-    T --> U[Display Final Score and Memory Count]
-    U --> V([END])
+    AC --> AD[Push Movement Record onto Stack]
+    AD --> AE[Add New Head Node to Doubly Linked List]
+    AE --> AF{Food Eaten?}
 
+    AF -- Yes --> AG[Increase Score and Food Count]
+    AG --> AH{Double Score Active?}
+    AH -- Yes --> AI[Add 20 Points and Reset Double Score]
+    AH -- No --> AJ[Add 10 Points]
+    AI --> AK{Every 3 Foods and Queue Below 5?}
+    AJ --> AK
+
+    AK -- Yes --> AL[Generate and Enqueue Random Power-up]
+    AK -- No --> AM[Generate New Food Position]
+    AL --> AM
+
+    AF -- No --> AN[Delete Tail Node]
+    AN --> AO[Continue Game Loop]
+    AM --> AO
+    AO --> F
+
+    Y --> Z
+    AB --> Z
+
+    Z --> AP[Free All Remaining Snake Nodes]
+    AP --> AQ[Free All Remaining Queue Nodes]
+    AQ --> AR[Free All Remaining Stack Nodes]
+    AR --> AS[Display Final Score and Remaining Node Count]
+    AS --> AT([END])
+
+    classDef terminal fill:#d1fae5,stroke:#059669,color:#064e3b,stroke-width:2px;
+    classDef process fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#78350f;
+    class A,AT terminal;
+    class B,C,D,E,F,G,K,L,M,P,R,S,T,U,V,W,AD,AE,AG,AI,AJ,AL,AM,AN,Z,AP,AQ,AR,AS process;
+    class H,I,J,N,O,Q,X,AA,AC,AF,AH,AK decision;
+```
 ## Sample Output
 
 Example display format:
