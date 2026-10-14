@@ -17,7 +17,7 @@ the wall or collides with its own body.
 The project also includes power-ups and an undo feature to
 demonstrate the use of Queue and Stack data structures.
 
----
+
 
 ## Problem Statement
 
@@ -31,7 +31,7 @@ its length, and maintain its body using a linked list.
 The program should also provide power-up management using
 a queue and undo functionality using a stack.
 
----
+
 
 ## Objectives
 
@@ -43,7 +43,7 @@ a queue and undo functionality using a stack.
 - Manage memory using malloc(), calloc(), and free().
 - Develop an interactive console-based game using C++.
 
----
+
 
 ## Data Structures Used
 
@@ -87,7 +87,7 @@ snake grew, and the movement direction.
 The player can press U to undo up to three saved moves,
 subject to the available undo count and stored history.
 
----
+
 
 ## Features
 
@@ -102,7 +102,7 @@ subject to the available undo count and stored history.
 - Live score, snake length, and memory-node display
 - Memory cleanup when the game ends
 
----
+
 
 ## Controls
 
@@ -116,7 +116,7 @@ subject to the available undo count and stored history.
 | U | Undo up to three saved moves |
 | Q | Quit the game |
 
----
+
 
 ## Power-Ups
 
@@ -135,7 +135,7 @@ The game supports three types of power-ups.
 A power-up is added to the queue after every three food items,
 provided the queue contains fewer than five power-ups.
 
----
+
 
 ## Algorithm
 
@@ -161,7 +161,7 @@ provided the queue contains fewer than five power-ups.
 16. Restore terminal settings and release allocated memory.
 17. Display the final score and remaining node count.
 
----
+
 ## Flowchart
 
 The following flowchart illustrates the complete working of the SnakeList game, including snake movement, food consumption, power-ups, undo operations, collision detection, and memory management.
@@ -276,7 +276,7 @@ Nodes still in memory: 0 (no leak)
 
 **Note:** This is an illustrative example. Actual positions, scores, power-ups, and node counts may vary during gameplay.
 
----
+
 
 ## Memory Management
 
@@ -293,7 +293,7 @@ The program displays the number of tracked nodes still in
 memory. A value of zero indicates that all tracked nodes
 have been released.
 
----
+
 
 ## Time Complexity
 
@@ -315,7 +315,7 @@ Let:
 | Pop movement record | O(1) |
 | Display power-up queue | O(Q) |
 
----
+
 
 ## Technologies Used
 
@@ -325,7 +325,7 @@ Let:
 - Libraries: iostream, string, cstdlib, ctime
 - Platform-specific keyboard and terminal functions
 
----
+
 
 ## How to Run
 
@@ -346,7 +346,6 @@ Run using:
 The terminal must support the keyboard-handling implementation
 used by the program.
 
----
 
 ## Conclusion
 
@@ -363,7 +362,7 @@ allocation, collision detection, and memory cleanup.
 It provides a practical understanding of Data Structures
 through a simple game-based application.
 
----
+
 
 ## Author
 
