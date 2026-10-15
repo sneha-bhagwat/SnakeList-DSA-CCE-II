@@ -166,86 +166,75 @@ provided the queue contains fewer than five power-ups.
 
 The following flowchart illustrates the complete working of the SnakeList game, including snake movement, food consumption, power-ups, undo operations, collision detection, and memory management.
 
+## Flowchart
+
 ```mermaid
 flowchart TD
-    A([START]) --> B[Initialize Random Generator and Keyboard]
-    B --> C[Create Initial Snake with 3 Nodes]
-    C --> D[Initialize Score, Direction, Undo Count and Counters]
-    D --> E[Generate Food at Random Position]
-    E --> F[Display Game Board, Score and Data Structure Status]
-
+    A([START]) --> B[Initialize Game and Keyboard]
+    B --> C[Create Snake with 3 Nodes]
+    C --> D[Initialize Score and Game Variables]
+    D --> E[Generate Food]
+    E --> F[Display Game Board and Score]
     F --> G[Read Keyboard Input]
 
     G --> H{Quit Key Q Pressed?}
-    H -- Yes --> Z[Restore Terminal Settings]
+    H -- Yes --> X[Restore Terminal Settings]
     H -- No --> I{Undo Key U Pressed?}
 
-    I -- Yes --> J{Undo Available and Stack Not Empty?}
-    J -- Yes --> K[Pop Up to 3 Movement Records]
-    K --> L[Restore Previous Snake Positions and Direction]
-    L --> M[Decrease Undo Count]
-    J -- No --> N{Power-up Key E Pressed?}
+    I -- Yes --> J{Undo Available?}
+    J -- Yes --> K[Restore Previous Snake Positions]
+    K --> L[Decrease Undo Count]
+    L --> M[Update Direction]
+    J -- No --> M
+
+    I -- No --> N{Power-up Key E Pressed?}
     M --> N
 
-    I -- No --> N
     N -- Yes --> O{Power-up Queue Empty?}
-    O -- No --> P[Dequeue Next Power-up]
-    P --> Q{Power-up Type?}
-    Q -- SLOW --> R[Slow Down Game Temporarily]
-    Q -- SHRINK --> S[Remove Up to 2 Tail Nodes]
-    Q -- 2X --> T[Enable Double Score for Next Food]
-    R --> U[Continue Game Loop]
-    S --> U
-    T --> U
-    O -- Yes --> U
+    O -- No --> P[Dequeue Power-up]
+    P --> Q[Apply Power-up Effect]
+    Q --> R[Update Direction]
+    O -- Yes --> R
+    N -- No --> R
 
-    N -- No --> V[Update Direction if Valid]
-    U --> V
-    V --> W[Calculate Next Head Position]
-    W --> X{Head Hits Wall?}
+    R --> S[Calculate Next Head Position]
+    S --> T{Wall Collision?}
 
-    X -- Yes --> Y[Set Game Over: Wall Collision]
-    X -- No --> AA{Next Position Hits Snake Body?}
+    T -- Yes --> Y[Game Over]
+    T -- No --> U{Self Collision?}
 
-    AA -- Yes --> AB[Set Game Over: Self Collision]
-    AA -- No --> AC[Check Whether Food Is Eaten]
+    U -- Yes --> Y
+    U -- No --> V[Save Movement in Undo Stack]
 
-    AC --> AD[Push Movement Record onto Stack]
-    AD --> AE[Add New Head Node to Doubly Linked List]
-    AE --> AF{Food Eaten?}
+    V --> W[Add New Head Node]
+    W --> AA{Food Eaten?}
 
-    AF -- Yes --> AG[Increase Score and Food Count]
-    AG --> AH{Double Score Active?}
-    AH -- Yes --> AI[Add 20 Points and Reset Double Score]
-    AH -- No --> AJ[Add 10 Points]
-    AI --> AK{Every 3 Foods and Queue Below 5?}
-    AJ --> AK
+    AA -- Yes --> AB[Increase Score]
+    AB --> AC[Generate New Food]
+    AC --> AD[Generate Power-up if Required]
+    AD --> AE[Continue Game Loop]
 
-    AK -- Yes --> AL[Generate and Enqueue Random Power-up]
-    AK -- No --> AM[Generate New Food Position]
-    AL --> AM
+    AA -- No --> AF[Delete Tail Node]
+    AF --> AE
 
-    AF -- No --> AN[Delete Tail Node]
-    AN --> AO[Continue Game Loop]
-    AM --> AO
-    AO --> F
+    AE --> F
 
-    Y --> Z
-    AB --> Z
-
-    Z --> AP[Free All Remaining Snake Nodes]
-    AP --> AQ[Free All Remaining Queue Nodes]
-    AQ --> AR[Free All Remaining Stack Nodes]
-    AR --> AS[Display Final Score and Remaining Node Count]
-    AS --> AT([END])
+    Y --> X
+    X --> AG[Free Snake, Queue and Stack Memory]
+    AG --> AH[Display Final Score]
+    AH --> AI([END])
 
     classDef terminal fill:#d1fae5,stroke:#059669,color:#064e3b,stroke-width:2px;
     classDef process fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
     classDef decision fill:#fef3c7,stroke:#d97706,color:#78350f;
-    class A,AT terminal;
-    class B,C,D,E,F,G,K,L,M,P,R,S,T,U,V,W,AD,AE,AG,AI,AJ,AL,AM,AN,Z,AP,AQ,AR,AS process;
-    class H,I,J,N,O,Q,X,AA,AC,AF,AH,AK decision;
+
+    class A,AI terminal;
+    class B,C,D,E,F,G,K,L,P,Q,R,S,V,W,AB,AC,AD,AF,AG,AH,X,Y process;
+    class H,I,J,N,O,T,U,AA decision;
 ```
+
+    
+    
 ## Sample Output
 
 The following is an illustrative example of the game output.
