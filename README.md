@@ -295,28 +295,6 @@ have been released.
 
 
 
-## Time Complexity
-
-Let:
-- N = number of snake segments
-- Q = number of power-ups in the queue
-- S = number of saved movement records
-
-| Operation | Time Complexity |
-|-----------|-----------------|
-| Add snake head | O(1) |
-| Add snake tail | O(1) |
-| Delete snake head | O(1) |
-| Delete snake tail | O(1) |
-| Collision checking | O(N) |
-| Enqueue power-up | O(1) |
-| Dequeue power-up | O(1) |
-| Push movement record | O(1) |
-| Pop movement record | O(1) |
-| Display power-up queue | O(Q) |
-
-
-
 ## Technologies Used
 
 - Programming Language: C++
@@ -364,8 +342,4 @@ through a simple game-based application.
 
 
 
-## Author
-
-DSA CCE-II Project
-Unit III | C++
 
