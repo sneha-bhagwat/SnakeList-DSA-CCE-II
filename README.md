@@ -166,7 +166,6 @@ provided the queue contains fewer than five power-ups.
 
 The following flowchart illustrates the complete working of the SnakeList game, including snake movement, food consumption, power-ups, undo operations, collision detection, and memory management.
 
-## Flowchart
 
 ```mermaid
 flowchart TD
