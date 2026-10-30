@@ -1,7 +1,7 @@
 
 # College Campus Connectivity Using Graphs
 
-## 📌 Project Overview
+## Project Overview
 
 This project represents college buildings as vertices and the pathways connecting them as edges using a graph.
 
@@ -9,7 +9,7 @@ An adjacency matrix is used to store and display the connectivity between differ
 
 The project is implemented in C++ and demonstrates the practical application of graph data structures in campus navigation.
 
-## 🎯 Objectives
+## Objectives
 
 - To understand graph representation using an adjacency matrix.
 - To represent college buildings as vertices.
@@ -17,7 +17,7 @@ The project is implemented in C++ and demonstrates the practical application of 
 - To display the connectivity between buildings.
 - To check whether a direct pathway exists between two buildings.
 
-## 🏫 Real-Life Application
+## Real-Life Application
 
 A college campus contains different buildings connected by walking pathways.
 
@@ -27,14 +27,14 @@ This project models the campus as an undirected graph, where:
 - **Edges:** Pathways connecting the buildings.
 - **Adjacency Matrix:** A two-dimensional array that stores the connections.
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Programming Language: C++
 - Header Files: `<iostream>` and `<string>`
 - Data Structure: Graph
 - Graph Representation: Adjacency Matrix
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 College-Campus-Connectivity/
@@ -43,7 +43,7 @@ College-Campus-Connectivity/
 └── README.md
 ```
 
-## ⚙️ How It Works
+## How It Works
 
 1. The program defines five college buildings.
 2. Each building is assigned an index from 0 to 4.
@@ -51,7 +51,7 @@ College-Campus-Connectivity/
 4. The `addPathway()` function updates the adjacency matrix.
 5. The user can display the matrix, list direct connections, or check a pathway.
 
-## 📊 Understanding the Adjacency Matrix
+## Understanding the Adjacency Matrix
 
 The adjacency matrix is a two-dimensional array.
 
@@ -70,7 +70,7 @@ Example:
 4   0 0 1 1 0
 ```
 
-## ▶️ How to Run the Program
+## How to Run the Program
 
 ### Step 1: Compile
 
@@ -96,14 +96,14 @@ On Linux or macOS:
 
 You can also run the program in Code::Blocks, Visual Studio Code, or another C++ IDE.
 
-## 📋 Program Features
+## Program Features
 
 1. Display the adjacency matrix.
 2. Display direct connections between buildings.
 3. Check whether a direct pathway exists.
 4. Use a menu-driven interface.
 
-## ⏱️ Time and Space Complexity
+## Time and Space Complexity
 
 Let `V` represent the number of vertices (buildings).
 
@@ -113,7 +113,7 @@ Let `V` represent the number of vertices (buildings).
 - **Checking a direct pathway:** O(1).
 - **Displaying all connections:** O(V²).
 
-## 📚 Data Structures Concepts Used
+## Data Structures Concepts Used
 
 - Graphs
 - Vertices and edges
@@ -123,14 +123,14 @@ Let `V` represent the number of vertices (buildings).
 - Loops and conditional statements
 - Menu-driven programming
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - Add more college buildings.
 - Allow users to add and remove pathways.
 - Find a route between two buildings using BFS.
 - Display a graphical map of the campus.
 
-## ✅ Conclusion
+## Conclusion
 
 This project demonstrates how a graph can represent a real-world college campus.
 
